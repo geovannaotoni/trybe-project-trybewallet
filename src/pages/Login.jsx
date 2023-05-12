@@ -10,6 +10,7 @@ class Login extends React.Component {
     btnDisabled: true,
   };
 
+  // Função para adicionar o value do input no state local. Foi necessário verificar os campos passando uma função como segundo parâmetro do state para garantir que a validação é feita no momento certo.
   handleChange = ({ target: { name, value } }) => {
     this.setState({
       [name]: value,
@@ -20,6 +21,7 @@ class Login extends React.Component {
     });
   };
 
+  // Função para verificar se os campos estão no formato correto, se sim ele retorna true e se não retorna falso
   verifyFields = () => {
     const { email, password } = this.state;
     const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i; // https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
@@ -29,6 +31,7 @@ class Login extends React.Component {
     return validationEmail && validationPassword;
   };
 
+  // função para realizar o dispatch da action addEmail passando como parametro o email salvo no state local. Em seguida, a pagina é redirecionada para a rota /carteira
   handleClick = () => {
     const { history: { push }, dispatch } = this.props;
     const { email } = this.state;
