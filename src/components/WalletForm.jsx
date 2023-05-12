@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCurrencies } from '../redux/actions';
+import { addExpense, getCurrencies } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -10,6 +10,7 @@ class WalletForm extends Component {
     currency: 'USD',
     method: 'dinheiro',
     tag: 'alimentacao',
+    id: 0, // id inicial da despesa
   };
 
   // logo que o componente é montado, realiza a requisição para a API para obter a lista de moedas com a getCurrencies()
@@ -22,6 +23,27 @@ class WalletForm extends Component {
     this.setState({
       [name]: value,
     });
+  };
+
+  // função após o clique do botão. Cria um objeto chamado expense com as informações inseridas nos campos (salvas no state local). Em seguida, realiza um dispatch para a função addExpense, que atualiza a chave expenses do state global, que é um array de objetos
+  handleClick = () => {
+    const { dispatch } = this.props;
+    const { valueInput, description, currency, method, tag, id } = this.state;
+    const expense = {
+      id,
+      value: valueInput,
+      description,
+      currency,
+      method,
+      tag,
+      exchangeRates: {},
+    };
+    dispatch(addExpense(expense));
+
+    // O id da despesa deve ser um número sequencial
+    this.setState((prevState) => ({
+      id: prevState.id + 1,
+    }));
   };
 
   render() {
@@ -98,6 +120,7 @@ class WalletForm extends Component {
             <option value="saude">Saúde</option>
           </select>
         </label>
+        <button type="button" onClick={ this.handleClick }>Adicionar despesa</button>
       </form>
     );
   }
