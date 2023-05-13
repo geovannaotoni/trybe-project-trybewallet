@@ -6,8 +6,23 @@ import mockData from './helpers/mockData';
 import App from '../App';
 
 describe('Testes para a página Wallet', () => {
-  const initialState = { user: { email: 'teste@teste.com' } };
   const initialEntries = ['/carteira'];
+  const expenseExample1 = {
+    value: '10',
+    currency: 'USD',
+    method: 'Dinheiro',
+    tag: 'Transporte',
+    description: 'Dez dólares',
+    exchangeRates: mockData,
+  };
+  const expenseExample2 = {
+    value: '1',
+    currency: 'USD',
+    method: 'Cartão de crédito',
+    tag: 'Lazer',
+    description: 'Um dólar',
+    exchangeRates: mockData,
+  };
 
   beforeEach(() => {
     jest.spyOn(global, 'fetch');
@@ -21,6 +36,7 @@ describe('Testes para a página Wallet', () => {
   });
 
   it('Verifica os elementos presentes na página', () => {
+    const initialState = { user: { email: 'teste@teste.com' } };
     renderWithRouterAndRedux(<App />, { initialState, initialEntries });
     expect(screen.getByText(/teste@teste\.com/i)).toBeInTheDocument();
     expect(screen.getByText(/brl/i)).toBeInTheDocument();
@@ -34,5 +50,16 @@ describe('Testes para a página Wallet', () => {
       name: /adicionar despesa/i,
     });
     expect(btnAddExpense).toBeInTheDocument();
+  });
+
+  it('Verifica se o Header calcula de forma correta o valor total das despesas', () => {
+    const initialState = {
+      wallet: {
+        expenses: [expenseExample1, expenseExample2],
+        currencies: Object.keys(mockData).filter((currency) => currency !== 'USDT'),
+      },
+    };
+    renderWithRouterAndRedux(<App />, { initialState, initialEntries });
+    expect(screen.getByTestId('total-field')).toHaveTextContent('52.28');
   });
 });
