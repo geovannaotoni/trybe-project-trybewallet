@@ -5,6 +5,8 @@ export const ADD_EMAIL = 'ADD_EMAIL';
 export const REQUEST_SUCCESSFUL = 'REQUEST_SUCCESSFUL';
 // ACTION TYPE para a adicionar uma despesa
 export const ADD_EXPENSE = 'ADD_EXPENSE';
+// ACTION TYPE para deletar uma despesa
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 
 // ACTION CREATOR para o user
 export const addEmail = (email) => ({
@@ -38,5 +40,11 @@ export function getCurrencies() {
 // ACTION CREATOR para adicionar uma despesa
 export const addExpense = (expense) => ({
   type: ADD_EXPENSE,
+  payload: expense,
+});
+
+// ACTION CREATOR para deletar uma despesa
+export const deleteExpense = (expense) => ({
+  type: DELETE_EXPENSE,
   payload: expense,
 });

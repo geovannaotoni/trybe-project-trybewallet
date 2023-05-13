@@ -9,7 +9,7 @@ class Header extends Component {
 
     // se não houver nenhuma despesa salva, retorna o valor zero
     if (expenses.length === 0) {
-      return 0;
+      return '0.00';
     }
 
     // caso contrario, realiza um map no expenses, um array de objetos que contem todas as despesas adicionadas. A chave exchangeRates de cada despesa contem a lista de todas as taxas de cambios na chave ask. Utiliza-se o cambio específico da moeda salva em currency para multiplicar pelo valor salvo e obter um array dos valores finais de cada despesa.
