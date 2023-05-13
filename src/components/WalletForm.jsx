@@ -5,11 +5,11 @@ import { addExpense, getCurrencies } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
-    valueInput: 0,
+    value: 0,
     description: '',
     currency: 'USD',
-    method: 'dinheiro',
-    tag: 'alimentacao',
+    method: 'Dinheiro',
+    tag: 'Alimentação',
     id: 0, // id inicial da despesa
   };
 
@@ -26,40 +26,56 @@ class WalletForm extends Component {
   };
 
   // função após o clique do botão. Cria um objeto chamado expense com as informações inseridas nos campos (salvas no state local). Em seguida, realiza um dispatch para a função addExpense, que atualiza a chave expenses do state global, que é um array de objetos
-  handleClick = () => {
+  handleClick = async () => {
     const { dispatch } = this.props;
-    const { valueInput, description, currency, method, tag, id } = this.state;
+    const { value, description, currency, method, tag, id } = this.state;
     const expense = {
       id,
-      value: valueInput,
+      value,
       description,
       currency,
       method,
       tag,
-      exchangeRates: {},
+      exchangeRates: await this.exchangeRates(),
     };
     dispatch(addExpense(expense));
 
     // O id da despesa deve ser um número sequencial
     this.setState((prevState) => ({
       id: prevState.id + 1,
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'dinheiro',
+      tag: 'alimentacao',
     }));
   };
 
+  // função que faz a requisição para a api
+  exchangeRates = async () => {
+    try {
+      const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   render() {
-    const { valueInput, description, currency, method, tag } = this.state;
+    const { value, description, currency, method, tag } = this.state;
     const { currencies } = this.props;
     // console.log(currencies);
     return (
       <form>
-        <label htmlFor="valueInput">
+        <label htmlFor="value">
           Valor:
           <input
             type="number"
-            name="valueInput"
-            value={ valueInput }
+            name="value"
+            value={ value }
             onChange={ this.handleChange }
-            id="valueInput"
+            id="value"
             data-testid="value-input"
           />
         </label>
@@ -99,9 +115,9 @@ class WalletForm extends Component {
             value={ method }
             onChange={ this.handleChange }
           >
-            <option value="dinheiro">Dinheiro</option>
-            <option value="credito">Cartão de crédito</option>
-            <option value="debito">Cartão de débito</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
           </select>
         </label>
         <label htmlFor="tag">
@@ -113,11 +129,11 @@ class WalletForm extends Component {
             value={ tag }
             onChange={ this.handleChange }
           >
-            <option value="alimentacao">Alimentação</option>
-            <option value="lazer">Lazer</option>
-            <option value="trabalho">Trabalho</option>
-            <option value="transporte">Transporte</option>
-            <option value="saude">Saúde</option>
+            <option value="Alimentação">Alimentação</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Saúde">Saúde</option>
           </select>
         </label>
         <button type="button" onClick={ this.handleClick }>Adicionar despesa</button>
