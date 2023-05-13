@@ -7,6 +7,10 @@ export const REQUEST_SUCCESSFUL = 'REQUEST_SUCCESSFUL';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 // ACTION TYPE para deletar uma despesa
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+// ACTION TYPE para editar uma despesa
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+// ACTION TYPE para salvar uma despesa editada
+export const SAVE_EDIT_EXPENSE = 'SAVE_EDIT_EXPENSE';
 
 // ACTION CREATOR para o user
 export const addEmail = (email) => ({
@@ -44,7 +48,19 @@ export const addExpense = (expense) => ({
 });
 
 // ACTION CREATOR para deletar uma despesa
-export const deleteExpense = (expense) => ({
+export const deleteExpense = (id) => ({
   type: DELETE_EXPENSE,
+  payload: id,
+});
+
+// ACTION CREATOR para editar uma despesa
+export const editExpense = (id) => ({
+  type: EDIT_EXPENSE,
+  payload: id,
+});
+
+// ACTION CREATOR para salvar uma despesa editada
+export const saveEditExpense = (expense) => ({
+  type: SAVE_EDIT_EXPENSE,
   payload: expense,
 });
