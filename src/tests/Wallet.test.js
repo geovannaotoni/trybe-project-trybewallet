@@ -108,15 +108,15 @@ describe('Testes para a página Wallet', () => {
     expect(screen.getByTestId(totalFieldTestId)).toHaveTextContent('4.75');
   });
 
-  it('Verifica se ao adicionar uma despesa, os inputs são limpos', () => {
-    // renderWithRouterAndRedux(<App />, { initialState, initialEntries });
-    // const valueInput = screen.getByTestId(valueInputTestId);
-    // const descriptionInput = screen.getByTestId('description-input');
-    // const currencyInput = screen.getByTestId('currency-input');
-    // const methodInput = screen.getByTestId('method-input');
-    // const tagInput = screen.getByTestId('tag-input');
-    // const btnAddExpense = screen.getByRole('button', {
-    //   name: /adicionar despesa/i,
-    // });
-  });
+  // it('Verifica se ao adicionar uma despesa, os inputs são limpos', () => {
+  //   renderWithRouterAndRedux(<App />, { initialState, initialEntries });
+  //   const valueInput = screen.getByTestId(valueInputTestId);
+  //   const descriptionInput = screen.getByTestId('description-input');
+  //   const currencyInput = screen.getByTestId('currency-input');
+  //   const methodInput = screen.getByTestId('method-input');
+  //   const tagInput = screen.getByTestId('tag-input');
+  //   const btnAddExpense = screen.getByRole('button', {
+  //     name: /adicionar despesa/i,
+  //   });
+  // });
 });
