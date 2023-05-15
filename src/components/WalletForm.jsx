@@ -11,12 +11,32 @@ class WalletForm extends Component {
     method: 'Dinheiro',
     tag: 'Alimentação',
     id: 0, // id inicial da despesa
+    editor: false,
   };
 
   // logo que o componente é montado, realiza a requisição para a API para obter a lista de moedas com a getCurrencies()
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(getCurrencies());
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(nextProps);
+    if (nextProps.editor && nextProps.editor !== nextState.editor) {
+      const expenseToEdit = nextProps.expenses[nextProps.idToEdit];
+      console.log(expenseToEdit);
+      const { id, value, description, currency, method, tag } = expenseToEdit;
+      this.setState({
+        id,
+        value,
+        description,
+        currency,
+        method,
+        tag,
+        editor: true,
+      });
+    }
+    return true;
   }
 
   // função para resetar o state para os valores default
@@ -87,6 +107,7 @@ class WalletForm extends Component {
     // Após disparar a ação de salvar a despesa editada, o id do estado local volta a ser o id sequencial da lista de despesas
     this.setState({
       id: expenses[expenses.length - 1].id + 1,
+      editor: false,
     });
   };
 

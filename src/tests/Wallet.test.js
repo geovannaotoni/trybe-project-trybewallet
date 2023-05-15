@@ -83,12 +83,13 @@ describe('Testes para a página Wallet', () => {
     userEvent.click(btnEditar[0]);
 
     const valueInput = screen.getByTestId(valueInputTestId);
-    userEvent.type(valueInput, '100');
-    // expect(valueInput).toHaveValue(100);
+    userEvent.type(valueInput, '0');
+    expect(valueInput).toHaveValue(100);
     const btnEnviarEdicao = screen.getByRole('button', { name: /editar despesa/i });
     userEvent.click(btnEnviarEdicao);
     await waitForElementToBeRemoved(() => screen.getByText('52.28'));
     expect(screen.getByTestId(totalFieldTestId)).toHaveTextContent('480.06');
+    expect(valueInput).toHaveTextContent('');
   });
 
   it('Verifica o botão de deletar despesa', () => {
@@ -108,15 +109,17 @@ describe('Testes para a página Wallet', () => {
     expect(screen.getByTestId(totalFieldTestId)).toHaveTextContent('4.75');
   });
 
-  // it('Verifica se ao adicionar uma despesa, os inputs são limpos', () => {
-  //   renderWithRouterAndRedux(<App />, { initialState, initialEntries });
-  //   const valueInput = screen.getByTestId(valueInputTestId);
-  //   const descriptionInput = screen.getByTestId('description-input');
-  //   const currencyInput = screen.getByTestId('currency-input');
-  //   const methodInput = screen.getByTestId('method-input');
-  //   const tagInput = screen.getByTestId('tag-input');
-  //   const btnAddExpense = screen.getByRole('button', {
-  //     name: /adicionar despesa/i,
-  //   });
-  // });
+  it('Verifica se ao adicionar uma despesa, os inputs são limpos', () => {
+    renderWithRouterAndRedux(<App />, { initialEntries });
+    const valueInput = screen.getByTestId(valueInputTestId);
+    const descriptionInput = screen.getByTestId('description-input');
+    const btnAddExpense = screen.getByRole('button', {
+      name: /adicionar despesa/i,
+    });
+    userEvent.type(valueInput, '10');
+    userEvent.type(descriptionInput, 'teste');
+    userEvent.click(btnAddExpense);
+    expect(valueInput).toHaveTextContent('');
+    expect(descriptionInput).toHaveTextContent('');
+  });
 });
