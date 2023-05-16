@@ -17,56 +17,66 @@ class Table extends Component {
   render() {
     const { expenses } = this.props;
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Descrição</th>
-            <th>Tag</th>
-            <th>Método de pagamento</th>
-            <th>Valor</th>
-            <th>Moeda</th>
-            <th>Câmbio utilizado</th>
-            <th>Valor convertido</th>
-            <th>Moeda de conversão</th>
-            <th>Editar/Excluir</th>
-          </tr>
-        </thead>
-        <tbody>
-          {expenses.map((elem) => (
-            <tr key={ elem.id }>
-              <td>{ elem.description }</td>
-              <td>{ elem.tag }</td>
-              <td>{ elem.method }</td>
-              <td>{ Number(elem.value).toFixed(2) }</td>
-              <td>{ elem.exchangeRates[elem.currency].name }</td>
-              <td>{ Number(elem.exchangeRates[elem.currency].ask).toFixed(2) }</td>
-              <td>
-                {
-                  (Number(elem.value)
-                  * Number(elem.exchangeRates[elem.currency].ask)).toFixed(2)
-                }
-              </td>
-              <td>Real</td>
-              <td>
-                <button
-                  type="button"
-                  data-testid="edit-btn"
-                  onClick={ () => this.handleClickEdit(elem.id) }
-                >
-                  Editar
-                </button>
-                <button
-                  type="button"
-                  data-testid="delete-btn"
-                  onClick={ () => this.handleClickDelete(elem.id) }
-                >
-                  Excluir
-                </button>
-              </td>
+      <section className="table-container">
+        <table className="table table-hover">
+          <thead>
+            <tr className="table-primary">
+              <th scope="row">Descrição</th>
+              <th scope="row">Tag</th>
+              <th scope="row">Método de pagamento</th>
+              <th scope="row">Valor</th>
+              <th scope="row">Moeda</th>
+              <th scope="row">Câmbio utilizado</th>
+              <th scope="row">Valor convertido</th>
+              <th scope="row">Moeda de conversão</th>
+              <th scope="row">Editar/Excluir</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {expenses.map((elem) => (
+              <tr key={ elem.id }>
+                <td className="text-center align-middle">{ elem.description }</td>
+                <td className="text-center align-middle">{ elem.tag }</td>
+                <td className="text-center align-middle">{ elem.method }</td>
+                <td className="text-center align-middle">
+                  { Number(elem.value).toFixed(2) }
+                </td>
+                <td className="text-center align-middle">
+                  { elem.exchangeRates[elem.currency].name }
+                </td>
+                <td className="text-center align-middle">
+                  { Number(elem.exchangeRates[elem.currency].ask).toFixed(2) }
+                </td>
+                <td className="text-center align-middle">
+                  {
+                    (Number(elem.value)
+                    * Number(elem.exchangeRates[elem.currency].ask)).toFixed(2)
+                  }
+                </td>
+                <td className="text-center align-middle">Real</td>
+                <td className="text-center align-middle">
+                  <button
+                    type="button"
+                    data-testid="edit-btn"
+                    onClick={ () => this.handleClickEdit(elem.id) }
+                    className="btn btn-warning"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    type="button"
+                    data-testid="delete-btn"
+                    onClick={ () => this.handleClickDelete(elem.id) }
+                    className="btn btn-danger"
+                  >
+                    Excluir
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
     );
   }
 }

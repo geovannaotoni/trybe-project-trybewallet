@@ -117,7 +117,7 @@ class WalletForm extends Component {
     // console.log(currencies);
     return (
       <form>
-        <label htmlFor="value">
+        <label htmlFor="value" className="col">
           Valor:
           <input
             type="number"
@@ -126,9 +126,10 @@ class WalletForm extends Component {
             onChange={ this.handleChange }
             id="value"
             data-testid="value-input"
+            className="form-control"
           />
         </label>
-        <label htmlFor="description">
+        <label htmlFor="description" className="col">
           Descrição:
           <input
             type="text"
@@ -137,9 +138,10 @@ class WalletForm extends Component {
             onChange={ this.handleChange }
             id="description"
             data-testid="description-input"
+            className="form-control"
           />
         </label>
-        <label htmlFor="currency">
+        <label htmlFor="currency" className="col">
           Moeda:
           <select
             name="currency"
@@ -147,6 +149,7 @@ class WalletForm extends Component {
             data-testid="currency-input"
             value={ currency }
             onChange={ this.handleChange }
+            className="form-select"
           >
             {currencies.map((coin) => (
               <option value={ coin } key={ coin }>
@@ -155,7 +158,7 @@ class WalletForm extends Component {
             ))}
           </select>
         </label>
-        <label htmlFor="method">
+        <label htmlFor="method" className="col">
           Método de Pagamento:
           <select
             name="method"
@@ -163,13 +166,14 @@ class WalletForm extends Component {
             data-testid="method-input"
             value={ method }
             onChange={ this.handleChange }
+            className="form-select"
           >
             <option value="Dinheiro">Dinheiro</option>
             <option value="Cartão de crédito">Cartão de crédito</option>
             <option value="Cartão de débito">Cartão de débito</option>
           </select>
         </label>
-        <label htmlFor="tag">
+        <label htmlFor="tag" className="col">
           Categoria:
           <select
             name="tag"
@@ -177,6 +181,7 @@ class WalletForm extends Component {
             data-testid="tag-input"
             value={ tag }
             onChange={ this.handleChange }
+            className="form-select"
           >
             <option value="Alimentação">Alimentação</option>
             <option value="Lazer">Lazer</option>
@@ -187,11 +192,21 @@ class WalletForm extends Component {
         </label>
         {
           editor ? (
-            <button type="button" onClick={ this.handleClickEdit }>
+            <button
+              type="button"
+              onClick={ this.handleClickEdit }
+              className="btn btn-success col"
+            >
+              <i className="bi bi-pencil" />
               Editar despesa
             </button>)
             : (
-              <button type="button" onClick={ this.handleClickAdd }>
+              <button
+                type="button"
+                onClick={ this.handleClickAdd }
+                className="btn btn-primary col"
+              >
+                <i className="bi bi-plus-lg" />
                 Adicionar despesa
               </button>
             )
