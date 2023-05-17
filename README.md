@@ -1,7 +1,7 @@
 # TrybeWallet
-Projeto em React de uma carteira de controle de gastos com conversor de moeda, utilizando a API [Economia](https://economia.awesomeapi.com.br/json/all). Ao utilizar essa aplicação, a pessoa usuária é capaz de adicionar, remover e editar um gasto, visualizar uma tabelas com seus gastos e visualizar o total de gastos convertidos para uma moeda de escolha. Para a estilização do projeto, foi utilizada o framework do [Bootstrap](https://getbootstrap.com/).
+Projeto em React de uma carteira de controle de gastos com conversor de moeda, utilizando a API [Economia](https://economia.awesomeapi.com.br/json/all). Ao utilizar essa aplicação, a pessoa usuária é capaz de adicionar, remover e editar um gasto, visualizar uma tabelas com seus gastos e visualizar o total de gastos convertidos para uma moeda de escolha. Para a estilização do projeto, foi utilizado o framework do [Bootstrap](https://getbootstrap.com/).
 <br><br>
-<img src="" alt="gif do projeto"/>
+<img src="./trybewallet.gif" alt="gif do projeto"/>
 
 ## :computer: Visualize este projeto:
 Acesse a página aqui:
