@@ -45,7 +45,7 @@ class Login extends React.Component {
     return (
       <section className="login mb-3 border border-primary border-opacity-50 rounded">
         <img src="https://static.vecteezy.com/system/resources/previews/001/312/507/original/piggy-bank-with-gold-coin-free-vector.jpg" alt="" />
-        <h1>TrybeWallet</h1>
+        <h1 style={ { color: '#0d6efd' } }>TrybeWallet</h1>
         <input
           type="email"
           name="email"

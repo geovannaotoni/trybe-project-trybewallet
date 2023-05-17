@@ -10,7 +10,8 @@ header {
   background-color: #cfe2ff;
   display: flex;
   height: 15vh;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 1rem 2rem;
   width: 100vw;
 }
 
