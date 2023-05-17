@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { addEmail } from '../redux/actions';
+import '../styles/login.css';
 
 class Login extends React.Component {
   state = {
@@ -42,7 +43,9 @@ class Login extends React.Component {
   render() {
     const { email, password, btnDisabled } = this.state;
     return (
-      <section>
+      <section className="login mb-3 border border-primary border-opacity-50 rounded">
+        <img src="https://static.vecteezy.com/system/resources/previews/001/312/507/original/piggy-bank-with-gold-coin-free-vector.jpg" alt="" />
+        <h1 style={ { color: '#0d6efd' } }>TrybeWallet</h1>
         <input
           type="email"
           name="email"
@@ -51,6 +54,7 @@ class Login extends React.Component {
           id="email"
           placeholder="Digite seu e-mail"
           data-testid="email-input"
+          className="form-control"
         />
         <input
           type="password"
@@ -60,8 +64,14 @@ class Login extends React.Component {
           id="password"
           placeholder="Digite sua senha"
           data-testid="password-input"
+          className="form-control"
         />
-        <button type="button" disabled={ btnDisabled } onClick={ this.handleClick }>
+        <button
+          type="button"
+          disabled={ btnDisabled }
+          onClick={ this.handleClick }
+          className="btn btn-primary"
+        >
           Entrar
         </button>
       </section>

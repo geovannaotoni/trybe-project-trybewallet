@@ -1,0 +1,17 @@
+.login {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 3rem;
+}
+
+.login > h1 {
+  text-align: center;
+}
+
+img {
+  align-self: center;
+  margin: 0;
+  width: 200px;
+}

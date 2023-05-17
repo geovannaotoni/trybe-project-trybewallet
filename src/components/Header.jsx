@@ -29,10 +29,24 @@ class Header extends Component {
     // console.log(this.totalExpenses());
     return (
       <header>
-        <p data-testid="email-field">{email}</p>
-
-        <p data-testid="header-currency-field">BRL</p>
-        <p data-testid="total-field">{this.totalExpenses()}</p>
+        <h1 style={ { color: '#0d6efd' } }>
+          {/* <i className="bi bi-piggy-bank-fill" /> */}
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Piggy_Bank_or_Savings_Flat_Icon_Vector.svg/2048px-Piggy_Bank_or_Savings_Flat_Icon_Vector.svg.png" alt="" />
+          TrybeWallet
+        </h1>
+        <div>
+          <h4>
+            <i className="bi bi-envelope-fill" style={ { color: '#0d6efd' } } />
+            <span data-testid="email-field">
+              {email}
+            </span>
+          </h4>
+          <h4>
+            <i className="bi bi-currency-dollar" style={ { color: '#0d6efd' } } />
+            <span data-testid="header-currency-field">BRL</span>
+            <span data-testid="total-field">{this.totalExpenses()}</span>
+          </h4>
+        </div>
       </header>
     );
   }
