@@ -8,4 +8,4 @@ Acesse a página aqui:
 [https://geovannaotoni-trybewallet.surge.sh/](https://geovannaotoni-trybewallet.surge.sh/)
 
 ## :bulb: Habilidades:
-Feito a partir dos conhecimentos de CSS, HTML, JavaScript, JSX, React e React Router Dom, Redux, Testes com React-Testing-Library, Componentes de Classe, PropTypes, NPM e Requisições via API.
+Feito a partir dos conhecimentos de CSS, HTML, JavaScript, JSX, React e React Router Dom, estados globais com Redux, actions assíncronas com Redux-Thunk, Testes com React-Testing-Library, Componentes de Classe, PropTypes, NPM e Requisições via API.
